@@ -1,0 +1,134 @@
+<section class="p-10 md:w-[50%] sm:w-[75%] mx-auto bg-gray-100 rounded border shadow my-10">
+    <h1 class="font-medium text-green-800 my-3 text-4xl m-3 text-center">Register Now</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+        <div class="mb-1">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name:</label>
+            <input formControlName="name" type="text" id="name" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <!--law el form fiha errors in general + law touched w tala3t mel input field-->
+            @if (registerForm.get('name')?.errors && registerForm.get('name')?.touched) {
+                <div class="flex p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <i class="fa-solid fa-circle-exclamation m-2"></i>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <ul class="mt-1 list-inside">
+                            @if (registerForm.get('name')?.getError('required')) {
+                                <li>Name is required.</li>
+                            }
+                          @else if (registerForm.get('name')?.getError('minlength')) {
+                            <li>Name must be at least 3 characters long.</li>
+                          }
+                          @else if (registerForm.get('name')?.getError('maxlength')) {
+                            <li>Name must be at most 20 characters long.</li>
+                          }
+                      </ul>
+                    </div>
+                  </div>
+            }
+        </div>
+
+        <div class="mb-1">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email:</label>
+            <input formControlName="email" type="email" id="email" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <!--law el form fiha errors in general + law touched w tala3t mel input field-->
+            @if (registerForm.get('email')?.errors && registerForm.get('email')?.touched ){ 
+                <div class="flex p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <i class="fa-solid fa-circle-exclamation m-2"></i>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <ul class="mt-1 list-inside">
+                          @if (registerForm.get('email')?.getError('required')) {
+                            <li>Email is required.</li>
+                          }
+                          @else if (registerForm.get('email')?.getError('email')) {
+                            <li>Email must be valid.</li>
+    
+                          }
+                      </ul>
+                    </div>
+                  </div>
+            }
+        </div>
+
+
+        <div class="mb-1">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password:</label>
+            <input formControlName="password" type="password" id="password" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <!--law el form fiha errors in general + law touched w tala3t mel input field-->
+            @if (registerForm.get('password')?.errors && registerForm.get('password')?.touched ){ 
+                <div class="flex p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <i class="fa-solid fa-circle-exclamation m-2"></i>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <ul class="mt-1 list-inside">
+                          @if (registerForm.get('password')?.getError('required')) {
+                            <li>Password is required.</li>
+                          }
+                          @else if (registerForm.get('password')?.getError('pattern')) {
+                            <li>Password must be valid.</li>
+    
+                          }
+                      </ul>
+                    </div>
+                  </div>
+            }
+        </div>
+
+
+        <div class="mb-1">
+            <label for="rePassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">rePassword:</label>
+            <input formControlName="rePassword" type="password" id="rePassword" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <!--law el form fiha errors in general + law touched w tala3t mel input field-->
+           @if (registerForm.getError('mismatch') && registerForm.get('rePassword')?.touched ){ 
+            <div class="flex p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <i class="fa-solid fa-circle-exclamation m-2"></i>
+                <span class="sr-only">Danger</span>
+                <div>
+                    <ul class="mt-1 list-inside">
+                        <li>Password confirmation is incorrect.</li>    
+                  </ul>
+                </div>
+              </div>
+            }
+        </div>
+
+        <div class="mb-1">
+            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone:</label>
+            <input formControlName="phone" type="text" id="phone" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <!--law el form fiha errors in general + law touched w tala3t mel input field-->
+           @if (registerForm.get('phone')?.errors && registerForm.get('phone')?.touched ){ 
+                <div class="flex p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <i class="fa-solid fa-circle-exclamation m-2"></i>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <ul class="mt-1 list-inside">
+                          @if (registerForm.get('phone')?.getError('required')) {
+                            <li>Phone is required.</li>
+                          }
+                          @else if (registerForm.get('phone')?.getError('pattern')) {
+                            <li>Phone must be valid.</li>
+    
+                          }
+                      </ul>
+                    </div>
+                  </div>
+            }
+        </div>
+
+        <button [disabled]="isLoading" type="submit" class="btn-main">
+            Sign Up
+            @if(isLoading){
+                <i class="fas fa-spin fa-spinner"></i>
+            }
+          </button>
+          <!--law el form mesh valid, 5ali el button disabled-->
+
+          @if (msgError) { 
+            <!--law 3andak error ezhar-->
+            <p class=" p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-200 dark:bg-gray-800 dark:text-red-400" role="alert">
+                {{msgError}}
+              </p>
+          }
+
+        </form>
+</section>

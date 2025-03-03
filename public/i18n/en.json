@@ -1,0 +1,14 @@
+{
+    "home" : "Home", 
+    "products" : "Products",
+    "categories" : "Categories",
+    "brands" : "Brands",
+    "register" : "Resgister",
+    "login" : "Log In",
+    "logout" : "Log Out",
+    "lang" : "Lang",
+    "loginNow" : "Login Now",
+    "password" : "Password",
+    "email" : "Email",
+    "name" : "Name"
+}

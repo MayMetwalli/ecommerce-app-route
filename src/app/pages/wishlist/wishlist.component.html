@@ -1,0 +1,50 @@
+<h1 class="font-medium text-green-800  my-4 text-4xl text-center">
+  Wishlist Products
+</h1>
+@if (wishlistDetails && wishlistDetails.length > 0) { 
+  <section>
+    <div class="container mx-auto px-4">
+
+      <div class="flex flex-col gap-6 mt-3"> 
+        @for (item of wishlistDetails; track item._id) {
+          <div class=" relative border border-gray-300 rounded-lg p-4 flex items-center gap-4" >
+            <!-- Product Image -->
+            <div class="w-1/5 " [routerLink]="['/details', item._id]">
+              <img [src]="item.imageCover" class="w-full h-auto rounded-lg" [alt]="item.title">
+            </div>
+
+            <!-- Product Details -->
+            <div class="w-4/5">
+              <h2 class="font-semibold text-2xl">{{ item.title }}</h2>
+              <p class="text-gray-500">{{ item.description }}</p>
+              <h3 class="text-green-800 font-semibold">{{ item.category.name }}</h3>
+
+              <!-- <div class="text-gray-400 hover:text-red-500 transition-colors duration-300 absolute right-4 top-3 ">
+                    <i class="fa-solid fa-heart  text-2xl text-red-600"></i>
+                    
+            </div> -->
+
+            <button (click)="removeItem(item._id)" class="text-gray-500 hover:text-red-700 text-lg absolute right-4 bottom-3 ">
+              Remove Product<i class="ms-2 fas fa-trash"></i>
+          </button>
+
+              <div class="flex justify-between items-center mt-2">
+                <span class="font-semibold">{{ item.price | currency: 'EGP ' }} </span>
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-300"></i> 
+                  <span class="text-gray-500 ml-1">{{ item.ratingsAverage }}</span>
+                </div>
+              </div>
+
+              <button class="btn-main w-full mt-4" (click)="addToCart(item._id)">
+                + Add To Cart
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+} @else { 
+  <p class="text-gray-500 text-center">Your wishlist is empty.</p> 
+}

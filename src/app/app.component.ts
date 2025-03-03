@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FlowbiteService } from './core/guards/services/flowbite/flowbite.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,12 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'ecommerce-rpoject';
+//   constructor(private flowbiteService: FlowbiteService) {}
+
+//   ngOnInit(): void {
+//     this.flowbiteService.loadFlowbite(flowbite => {
+//       // Your custom code here
+//     });
+//   }
+// }
 }

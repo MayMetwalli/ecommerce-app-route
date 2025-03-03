@@ -1,0 +1,46 @@
+<div class="max-w-5xl mx-auto p-6">
+    <h1 class="font-medium text-green-800  my-4 text-4xl text-center">
+        Shopping Cart
+      </h1>
+    @if (cartDetails && cartDetails.products?.length > 0) {
+        <div class="bg-gray-100 shadow-md rounded-lg p-5">
+            @for (prod of cartDetails.products; track prod.product.id) {
+                <div class="flex items-center gap-4 border-b pb-4 mb-4">
+                    <img [src]="prod.product.imageCover" class="w-20 h-20 object-cover rounded" [alt]="prod.product.title">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-medium text-gray-800">{{ prod.product.title }}</h3>
+                        <p class="text-green-600 font-semibold">Price: {{ prod.price | currency: 'EGP ' }}</p>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <button (click)="updateCount(prod.product.id, prod.count - 1)" class="bg-gray-300 text-gray-700 px-2 py-1 rounded">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <span class="text-lg font-medium">{{ prod.count }}</span>
+                        <button (click)="updateCount(prod.product.id, prod.count + 1)" class="bg-green-500 text-white px-2 py-1 rounded">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <button (click)="removeItem(prod.product.id)" class="text-gray-500 hover:text-gray-700 text-lg">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            }
+
+            <div class="flex justify-between text-gray-600 font-semibold mt-4 text-lg">
+                <span>Total:</span>
+                <span class="text-green-700">{{ cartDetails.totalCartPrice | currency: 'EGP ' }}</span>
+            </div>
+
+            <button [routerLink]="['/checkout', cartDetails._id]" class="w-full bg-green-600 text-white py-2 rounded mt-5 hover:bg-green-700">
+                Proceed to Checkout
+            </button>
+
+            <button (click)="clearItems()" class="w-full bg-transparent text-red-700 py-2 rounded mt-5 hover:border-gray-300 hover:bg-gray-200 hover:border hover:shadow-sm">
+                Clear Cart
+            </button>
+        </div>
+    } @else {
+        <p class="text-gray-500 text-center">Your cart is empty.</p>
+    }
+</div>

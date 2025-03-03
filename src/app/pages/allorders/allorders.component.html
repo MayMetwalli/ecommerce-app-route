@@ -1,0 +1,50 @@
+@if(allOrders){
+    <div class=" mx-auto bg-gray-100 p-6 rounded-lg shadow-md">
+        <h2 class="font-medium text-green-800 my-3 text-4xl m-3 ">Order Summary</h2>
+        
+
+        @for (item of allOrders; track $index) {
+            <div class=" mt-6 border rounded-lg shadow-lg p-4 bg-white">
+                <div class="mt-4 border-b pb-4">
+                <p class="text-gray-700 font-bold mt-2">Order ID: #<span class="font-semibold">{{item.id}}</span></p>
+                <p class="text-gray-700 font-bold mt-2">Purchase Date: <span class="font-semibold">{{item.createdAt | date:'yyyy-MM-dd'}}</span></p>
+                <p class="text-gray-700 font-bold mt-2">Total Payment: <span class="text-green-600 font-semibold">{{item.totalOrderPrice | currency: ' EGP '}}</span></p>
+                <p class="text-gray-700 font-bold mt-2">Paid with: <span class="font-semibold">{{item.paymentMethodType}}</span></p>
+
+            </div>
+          
+          
+            <div class="mt-2">
+                @for (prod of item.cartItems ; track $index) {
+    
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg shadow mb-4">
+
+                            <div class="flex items-center space-x-4">
+                                <img [src]="prod.product.imageCover" [alt]="prod.product.title" class="w-40  rounded-lg">
+                                <div>
+                                    <p class="text-gray-800 font-medium">{{prod.product.title}}</p>
+                                    <p class="text-gray-600">Qty: {{prod.count}}</p>
+                                    <p class="text-gray-600">Price: {{prod.price | currency: 'EGP '}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                        
+                        
+                        
+                        
+                        <div class="mt-6 ">
+                <button class="btn-main w-full">Track Shipment</button>
+            </div>
+          
+            <div class="mt-6 mx-auto text-end ">
+                
+              <button class="px-3 py-2 hover:bg-red-600 bg-gray-100 text-red-600 border border-red-500 hover:text-white transition rounded-lg ">
+                <i class="fa-solid fa-xmark mx-1 p-0"></i>Cancel Order</button>
+            </div> 
+          
+          </div>
+          </div>
+        }
+      </div>
+}

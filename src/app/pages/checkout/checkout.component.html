@@ -1,0 +1,75 @@
+<section class="p-10 md:w-[50%] sm:w-[75%] mx-auto bg-gray-100 rounded border shadow my-10">
+    <h1 class="font-medium text-green-800 my-3 text-4xl m-3 text-center">Checkout</h1>
+
+    <form [formGroup]="checkoutForm" (ngSubmit)="submitCheckout()">
+        <div class="mb-1">
+            <label for="details" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Details:</label>
+            <textarea formControlName="details" id="details" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+            @if (checkoutForm.get('details')?.errors && checkoutForm.get('details')?.touched) {
+                <div class="flex p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <i class="fa-solid fa-circle-exclamation m-2"></i>
+                    <div>
+                        <ul class="mt-1 list-inside">
+                            @if (checkoutForm.get('details')?.getError('required')) {
+                                <li>Details are required.</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="mb-1">
+            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone:</label>
+            <input formControlName="phone" type="text" id="phone" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            @if (checkoutForm.get('phone')?.errors && checkoutForm.get('phone')?.touched) {
+                <div class="flex p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <i class="fa-solid fa-circle-exclamation m-2"></i>
+                    <div>
+                        <ul class="mt-1 list-inside">
+                            @if (checkoutForm.get('phone')?.getError('required')) {
+                                <li>Phone is required.</li>
+                            }
+                            @else if (checkoutForm.get('phone')?.getError('pattern')) {
+                                <li>Phone must be valid.</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="mb-1">
+            <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City:</label>
+            <input formControlName="city" type="text" id="city" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            @if (checkoutForm.get('city')?.errors && checkoutForm.get('city')?.touched) {
+                <div class="flex p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <i class="fa-solid fa-circle-exclamation m-2"></i>
+                    <div>
+                        <ul class="mt-1 list-inside">
+                            @if (checkoutForm.get('city')?.getError('required')) {
+                                <li>City is required.</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="flex justify-between gap-2 mt-2 ">
+            <button  [disabled]="isLoading || checkoutForm.invalid" type="submit" class="btn-main md:w-full">
+                Online Payment
+                @if(isLoading){
+                    <i class="fas fa-spin fa-spinner"></i>
+                }
+            </button>
+
+            <!-- <button [disabled]="isLoading || checkoutForm.invalid" type="submit" class="btn-main md:w-full">
+                Cash Payment
+                @if(isLoading){
+                    <i class="fas fa-spin fa-spinner"></i>
+                }
+            </button> -->
+        </div>
+    </form>
+</section>

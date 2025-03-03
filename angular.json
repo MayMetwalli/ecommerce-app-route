@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ecommerce-rpoject": {
+    "ecommerce-project": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ecommerce-rpoject",
+            "outputPath": "dist/ecommerce-project",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -29,12 +29,18 @@
               {
                 "glob": "**/*",
                 "input": "public"
+                
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/styles.scss",
+               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/flowbite/dist/flowbite.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -69,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ecommerce-rpoject:build:production"
+              "buildTarget": "ecommerce-project:build:production"
             },
             "development": {
-              "buildTarget": "ecommerce-rpoject:build:development"
+              "buildTarget": "ecommerce-project:build:development"
             }
           },
           "defaultConfiguration": "development"

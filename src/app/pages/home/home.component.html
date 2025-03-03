@@ -1,0 +1,95 @@
+<section class="stat-slider dark:bg-gray-900 dark:text-white">
+    <div class="grid grid-cols-1 md:grid-cols-[70%_30%] py-10">
+        <div> <!--left side that has 70%-->
+            <owl-carousel-o [options]="customMainSlider">
+                <ng-template carouselSlide>
+                    <img src="/imgs/img1.avif" class="w-full h-[300px]">
+                </ng-template>   
+                <ng-template carouselSlide>
+                    <img src="/imgs/img2.avif" class="w-full h-[300px]">
+                </ng-template>   
+                <ng-template carouselSlide>
+                    <img src="/imgs/img3.avif" class="w-full h-[300px]">
+                </ng-template>   
+                <ng-template carouselSlide>
+                    <img src="/imgs/img4.avif" class="w-full h-[300px]">
+                </ng-template>   
+                <ng-template carouselSlide>
+                    <img src="/imgs/img5.avif" class="w-full h-[300px]">
+                </ng-template>   
+                <ng-template carouselSlide>
+                    <img src="/imgs/img6.avif" class="w-full h-[300px]">
+                </ng-template>   
+              </owl-carousel-o>
+        </div>
+        <div> <!--right side that has 30%-->
+            <img src="/imgs/grocery-banner.png" class="w-full h-[150px]">
+            <img src="/imgs/grocery-banner-2.jpeg" class="w-full h-[150px]">
+        </div>
+
+    </div>
+</section>
+
+<section class="slider-section dark:bg-gray-900 dark:text-white">
+    <h2 class="font-semibold text-green-800 my-3 text-4xl">Popular Categories</h2>
+
+    <owl-carousel-o [options]="customOptions">
+  
+        @for (cat of categories; track cat._id){
+            <ng-template carouselSlide>
+                <!--content of one slide-->
+                <div>
+                    <img [src]="cat.image" class="w-full h-[250px]">
+                    <h3 class="text-green-700">{{cat.name}}</h3>
+                </div>
+              </ng-template>
+        }
+  
+    </owl-carousel-o>
+
+</section>
+
+<section class="prod-section dark:bg-gray-900 dark:text-white">
+    <h2 class="font-semibold text-green-800 my-3 text-4xl">Popular Products</h2>
+    <div class="md:w-1/2 sm:w-full my-2 mx-auto flex items-center border border-gray-400 rounded shadow-sm focus-within:ring-2 focus-within:ring-blue-300">
+        <i class=" px-3 text-gray-400 fas fa-search"></i>
+        <input [(ngModel)]="text" type="search" placeholder="Search by name..." class="w-full p-3 pl-10 text-gray-700 border border-gray-400 placeholder:text-gray-500 rounded focus:outline-none focus:ring-2 focus:ring-blue-300 shadow-sm">
+        </div>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+          
+<!--Card-->
+     @for(prod of products  | search : text; track prod.id){ <!--.slice(0,12)-->
+        <div class="mt-3 border border-green-400/50 rounded-md overflow-hidden shadow relative card dark:bg-gray-700">
+            <div class="products"  [routerLink]="['/details', prod.id]">
+                <div class="card-img" >
+                    <img [src]="prod.imageCover" class="w-full h-[250px] object-contain" [alt]="prod.title" />
+                    </div>
+                    <div class="card-body px-3 py-3">
+                    <h4 class="text-green-500 dark:text-green-500 text-xs">{{prod.category.name}}</h4>
+                    <h3 class="font-medium">{{prod.title.split(' ', 2).join(' ')}}</h3>
+                    <div class="flex justify-between items-center">
+                    <span>{{prod.price}} EGP</span>
+                    <div class="flex items-center">
+                    <i class="fas fa-star text-yellow-300"></i> <span class="text-gray-500 mx-1">{{prod.ratingsAverage}}</span>
+                </div>
+                </div>
+                </div>
+            </div>
+            <button  (click)="addToWishlist(prod.id)" class="text-gray-400 hover:text-red-500 transition-colors duration-300 absolute right-2 top-3">
+                @if(wishlist.includes(prod.id)){
+                    <i class="fa-solid fa-heart  text-xl text-red-600"></i>
+                    
+                }@else {
+                    <i class="far fa-heart text-xl"></i>}
+            </button>
+
+            <button class="btn-main w-full add-to-cart" (click)="addToCart(prod.id)">
+                Add To Cart
+            </button>
+                </div>
+     }
+
+        </div>
+</section>
+

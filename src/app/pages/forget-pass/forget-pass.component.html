@@ -1,0 +1,114 @@
+<section class="p-10 md:w-[50%] sm:w-[75%] mx-auto bg-gray-100 rounded border shadow my-10">
+    <h1 class="font-medium text-green-800 my-3 text-4xl m-3 text-center">Reset Password</h1>
+
+    
+    @if(step === 1){
+        <form [formGroup]="verifyEmail" (ngSubmit)="verifyEmailSubmitted()">
+
+            <div class="mb-1">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email:</label>
+                <input formControlName="email" type="email" id="email" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
+            <button class="btn-main sm:w-full md:w-[40%]" [disabled]="verifyEmail.invalid || isLoading" type="submit">
+              Verify Email  
+              @if(isLoading){
+                <i class="fas fa-spin fa-spinner"></i>
+              }
+            </button> 
+            
+    
+            @if (verifyEmail.get('email')?.errors && verifyEmail.get('email')?.touched ){ 
+                <div class="flex p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-100 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <i class="fa-solid fa-circle-exclamation m-2"></i>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <ul class="mt-1 list-inside">
+                          @if (verifyEmail.get('email')?.getError('required')) {
+                            <li>Email is required.</li>
+                          }
+                          @else if (verifyEmail.get('email')?.getError('email')) {
+                            <li>Email must be valid.</li>
+    
+                          }
+                      </ul>
+                    </div>
+                  </div>
+            }
+    
+            </form>
+
+    }@else if(step === 2){
+        <form [formGroup]="verifyCode" (ngSubmit)="verifyCodeSubmitted()">
+
+            <div class="mb-1">
+                <label for="resetCode" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Code:</label>
+                <input formControlName="resetCode" type="text" id="resetCode" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
+                <button class="btn-main sm:w-full md:w-[40%]" [disabled]="verifyCode.invalid" type="submit">
+                  Verify Code  
+                  @if(isLoading){
+                    <i class="fas fa-spin fa-spinner"></i>
+                  }
+                </button> 
+                            @if (verifyCode.get('resetCode')?.errors && verifyCode.get('resetCode')?.touched ){ 
+                <div class="flex p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-100 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <i class="fa-solid fa-circle-exclamation m-2"></i>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <ul class="mt-1 list-inside">
+                          @if (verifyCode.get('resetCode')?.getError('required')) {
+                            <li>Code is required.</li>
+                          }
+                          @else if (verifyCode.get('resetCode')?.getError('pattern')) {
+                            <li>Code must be valid.</li>
+    
+                          }
+                      </ul>
+                    </div>
+                  </div>
+            }
+    
+            </form>
+    }@else if(step === 3){
+
+        <form [formGroup]="resetPassword" (ngSubmit)="newPasswordSubmitted()">
+          <div class="mb-1">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email:</label>
+            <input readonly formControlName="email" type="email" id="email" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+
+            <div class="mb-1">
+                <label for="newPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New Password:</label>
+                <input formControlName="newPassword" type="password" id="newPassword" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
+                <button class="btn-main sm:w-full md:w-[40%]" [disabled]="resetPassword.invalid || isLoading" type="submit">
+                  Set New Password  
+                  @if(isLoading){
+                    <i class="fas fa-spin fa-spinner"></i>
+                  }
+                </button>            
+                 @if (resetPassword.get('newPassword')?.errors && resetPassword.get('newPassword')?.touched ){ 
+                <div class="flex p-4 mb-1 mt-1 text-sm text-red-800 rounded-lg bg-red-100 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <i class="fa-solid fa-circle-exclamation m-2"></i>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <ul class="mt-1 list-inside">
+                          @if (resetPassword.get('newPassword')?.getError('required')) {
+                            <li>New password is required.</li>
+                          }
+                          @else if (resetPassword.get('newPassword')?.getError('pattern')) {
+                            <li>Password must be valid.</li>
+    
+                          }
+                      </ul>
+                    </div>
+                  </div>
+            }
+    
+            </form>
+    }
+
+
+
+
+</section>
