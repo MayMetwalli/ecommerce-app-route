@@ -33,7 +33,7 @@ import { WishlistService } from '../../core/guards/services/wishlist/wishlist.se
 
     wishlist: string[] = [];
     
-     loadedWishlist = localStorage.getItem('wishlist');
+     loadedWishlist:any
 
     customMainSlider: OwlOptions = {
       loop: true,
@@ -110,6 +110,9 @@ import { WishlistService } from '../../core/guards/services/wishlist/wishlist.se
     }
 
     ngOnInit(): void {
+      if(typeof window != 'undefined') {
+        this.loadedWishlist = localStorage.getItem('wishlist');
+      }
       this.getProductsData();
       this.getCategoryData();
     }

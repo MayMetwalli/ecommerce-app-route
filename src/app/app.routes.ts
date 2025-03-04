@@ -1,21 +1,12 @@
 import { Routes } from '@angular/router';
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { HomeComponent } from './pages/home/home.component';
-import { CartComponent } from './pages/cart/cart.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { BrandsComponent } from './pages/brands/brands.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
-import { CheckoutComponent } from './pages/checkout/checkout.component';
-import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { authGuard } from './core/guards/auth.guard';
 import { loggedGuard } from './core/guards/logged.guard';
-import { DetailsComponent } from './pages/details/details.component';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { ForgetPassComponent } from './pages/forget-pass/forget-pass.component';
-import { AllordersComponent } from './pages/allorders/allorders.component';
-import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { LoginComponent } from './pages/login/login.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 export const routes: Routes = [
     {path:'', redirectTo: 'home', pathMatch: 'full'},

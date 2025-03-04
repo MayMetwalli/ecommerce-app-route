@@ -10,7 +10,7 @@ export class WishlistService {
 
   constructor( private httpClient:HttpClient) { }
 
-  myToken:any = localStorage.getItem('userToken');
+  // myToken:any = localStorage.getItem('userToken');
 
   // private cartItemCount = new BehaviorSubject<number>(0);
   // cartItemCount$ = this.cartItemCount.asObservable();
@@ -22,32 +22,32 @@ export class WishlistService {
       { //body
         "productId" : id 
       },
-      { //headers
-        headers:{
-          token: this.myToken 
-        }
+      // { //headers
+      //   headers:{
+      //     token: this.myToken 
+      //   }
 
-      }
+      // }
     )
   }
 
   getLoggedUserWishlist():Observable<IWishlist>{
     return this.httpClient.get<IWishlist>('https://ecommerce.routemisr.com/api/v1/wishlist',
-      {
-        headers:{
-          token: this.myToken
-        }
-      }
+      // {
+      //   headers:{
+      //     token: this.myToken
+      //   }
+      // }
     )
   }
 
   removeProductFromWishlist(id:string):Observable<any>{
     return this.httpClient.delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${id}`,
-      {
-        headers:{
-          token: this.myToken
-        }
-      }
+      // {
+      //   headers:{
+      //     token: this.myToken
+      //   }
+      // }
     )
   }
 
