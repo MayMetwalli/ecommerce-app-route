@@ -16,7 +16,7 @@ export const routes: Routes = [
         {path: 'reset-password', component:ForgetPassComponent, title: 'Reset Password'},
     ]},
     {path: '', component: MainLayoutComponent, children:[
-        {path:'home', loadComponent:()=> import('./pages/home/home.component').then(e=> e.HomeComponent), title: 'Home'}, //, canActivate:[authGuard]
+        {path:'home', loadComponent:()=> import('./pages/home/home.component').then(e=> e.HomeComponent), title: 'Home', canActivate:[authGuard]}, //, canActivate:[authGuard]
         {path:'cart',loadComponent:()=> import('./pages/cart/cart.component').then(e=> e.CartComponent), title: 'Cart', canActivate:[authGuard]},
         {path:'wishlist', loadComponent:()=> import('./pages/wishlist/wishlist.component').then(e=> e.WishlistComponent), title: 'Wishlist', canActivate:[authGuard]},
         {path:'products', loadComponent:()=> import('./pages/products/products.component').then(e=> e.ProductsComponent), title: 'Products', canActivate:[authGuard]},
